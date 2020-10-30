@@ -15,9 +15,9 @@ exports.insert = (req, res, next) => {
         if ((alert.identifier == IDENTIFIER) && (alert.sender == SENDER)) {
             parameters = alert.info.parameter;
             return Weather.insert(parameters).then(() => {
-                res.status(404);
+                res.status(200);
                 res.set('Content-Type', 'text/xml');
-                res.send(createError(body));
+                res.send(createAck(body));
             }).catch(() => {
                 res.status(404);
                 res.set('Content-Type', 'text/xml');
